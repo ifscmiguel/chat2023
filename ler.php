@@ -6,9 +6,6 @@ $password = '';
 
 $conexao = new PDO('mysql:host=localhost; dbname='.$dbname,$user,$password);
 
-$sql = 'select * from msg order by id desc';
-$msgs = $conexao->query($sql);
-
-foreach($msgs as $m){
-    echo $m["nome"].': '.$m["msg"];
-}
+$stmt = $conexao->query("select * from msg order by id desc");
+$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+echo json_encode($data);
