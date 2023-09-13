@@ -54,16 +54,17 @@ if (!trim($nome)) {
         </form>
     </div>
     <script>
-        function rolar() {
-            let chatDiv = document.getElementById("chat");
-            chatDiv.scrollTop = chatDiv.scrollHeight;
-        }
-        rolar();
+        
 
         // elementos
+        let chatDiv = document.getElementById("chat");
         const nome = document.getElementById("nome");
         const msg = document.getElementById("msg");
         const form = document.querySelector("form");
+
+        function rolar() {
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        }
 
         form.addEventListener("submit", function(e) {
             e.preventDefault();
@@ -74,26 +75,36 @@ if (!trim($nome)) {
             let data = new FormData();
             data.append("msg", msg.value);
             data.append("nome", nome.value);
-            
+
             // enviar de forma assíncrona
-            fetch("recebe.php",{
-                method:"POST",
-                body:data
-            }).then(function(resposta){
-                if(!resposta.ok){
+            fetch("recebe.php", {
+                method: "POST",
+                body: data
+            }).then(function(resposta) {
+                if (!resposta.ok) {
                     alert("não foi possível enviar");
-                }
-                else{
+                } else {
                     msg.value = "";
-                }                
+                }
             });
-
-            // receber de forma assíncrona
-            function receber(){
-
-            }
-
         }
+        // receber de forma assíncrona
+        function receber() {
+            fetch("ler.php")
+                .then(function(resposta) {
+                    return resposta.json();
+                })
+                .then(function(resposta){
+                    resposta.forEach(function(r){
+                        chatDiv.innerHTML += `Nome: ${r.nome}:`;
+                        chatDiv.innerHTML += `Msg: ${r.msg}:`;
+                        chatDiv.innerHTML += '<hr>';
+                        rolar();
+                    });
+                });
+        }
+        // chama a função receber() a cada 3 segundos
+        setInterval(receber, 3000);
     </script>
 </body>
 
