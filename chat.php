@@ -104,7 +104,7 @@ if (!trim($nome)) {
                 });
         }
         // chama a função receber() a cada 3 segundos
-        setInterval(receber, 3000);
+        setInterval(receber, 10000);
     </script>
 </body>
 
