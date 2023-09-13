@@ -74,7 +74,6 @@ if (!trim($nome)) {
             let data = new FormData();
             data.append("msg", msg.value);
             data.append("nome", nome.value);
-
             
             // enviar de forma assíncrona
             fetch("recebe.php",{
