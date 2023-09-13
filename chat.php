@@ -48,11 +48,9 @@ if (!trim($nome)) {
 
         </div>
         <form action="recebe.php" method="post"">
-            <div id="input_area">
-                    <input type="hidden" name="nome" id="nome" value="<?= $nome ?>">
-                    <input type="text" id="msg" name="msg">
-                    <input type="submit" value="enviar" id="enviar">
-            </div>
+            <input type="hidden" name="nome" id="nome" value="<?= $nome ?>">
+            <input type="text" id="msg" name="msg">
+            <input type="submit" value="enviar" id="enviar">
         </form>
     </div>
     <script>
@@ -67,15 +65,35 @@ if (!trim($nome)) {
         const msg = document.getElementById("msg");
         const form = document.querySelector("form");
 
-        form.addEventListener("submit", function(e){
+        form.addEventListener("submit", function(e) {
             e.preventDefault();
             enviar();
         });
 
-        function enviar(){
-            
-        }
+        function enviar() {
+            let data = new FormData();
+            data.append("msg", msg.value);
+            data.append("nome", nome.value);
 
+            // enviar de forma assíncrona
+            fetch("recebe.php",{
+                method:"POST",
+                body:data
+            }).then(function(resposta){
+                if(!resposta.ok){
+                    alert("não foi possível enviar");
+                }
+                else{
+                    msg.value = "";
+                }                
+            });
+
+            // receber de forma assíncrona
+            function receber(){
+                
+            }
+
+        }
     </script>
 </body>
 
