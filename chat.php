@@ -75,6 +75,7 @@ if (!trim($nome)) {
             data.append("msg", msg.value);
             data.append("nome", nome.value);
 
+            
             // enviar de forma assíncrona
             fetch("recebe.php",{
                 method:"POST",
@@ -90,7 +91,7 @@ if (!trim($nome)) {
 
             // receber de forma assíncrona
             function receber(){
-                
+
             }
 
         }
