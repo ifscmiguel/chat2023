@@ -2,7 +2,7 @@ create database if not exists chat2023;
 use chat2023;
 
 CREATE TABLE `msg` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `msg` varchar(255) DEFAULT NULL,
   `data` datetime DEFAULT current_timestamp(),
