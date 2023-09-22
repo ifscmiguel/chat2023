@@ -72,7 +72,7 @@ if (!trim($nome)) {
 
         </div>
         <form action="recebe.php" method="post"">
-            <input type=" hidden" name="nome" id="nome" value="<?= $nome ?>">
+            <input type="hidden" name="nome" id="nome" value="<?= $nome ?>">
             <input type="text" id="msg" name="msg">
             <input type="submit" value="enviar" id="enviar">
         </form>
