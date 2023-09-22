@@ -52,7 +52,16 @@ if (!trim($nome)) {
         form {
             display: flex;
             gap: 10px;
-            border:none;
+            border: none;
+        }
+
+        .ver {
+            opacity: 1 !important;
+            transition: opacity 1s linear;
+        }
+
+        .oculto {
+            opacity: 0;
         }
     </style>
 </head>
@@ -63,7 +72,7 @@ if (!trim($nome)) {
 
         </div>
         <form action="recebe.php" method="post"">
-            <input type="hidden" name="nome" id="nome" value="<?= $nome ?>">
+            <input type=" hidden" name="nome" id="nome" value="<?= $nome ?>">
             <input type="text" id="msg" name="msg">
             <input type="submit" value="enviar" id="enviar">
         </form>
@@ -121,9 +130,30 @@ if (!trim($nome)) {
                         div.innerHTML = `<strong>${r.nome}</strong>: ${r.msg}`;
                         chatDiv.appendChild(div);
                         id = r.id;
+
                         rolar();
+                        div.classList.add('oculto');
                     });
+                })
+                .then(function() {
+                    let index = 1;
+                    let ocultos = document.querySelectorAll(".oculto");
+                    console.log(ocultos.length);
+                    for (const m of ocultos.values()) {
+                        setTimeout(() => {
+                            m.classList.remove("oculto");
+                            m.classList.add('ver');
+                            console.log(m);
+                        }, (index * 300));
+                        index++;
+                    }
+
+                    rolar();
+                })
+                .then(function() {
+                    rolar();
                 });
+
         }
         // chama a função ler() a cada 3 segundos
         setInterval(ler, 3000);
