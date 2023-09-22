@@ -7,7 +7,7 @@ CREATE TABLE `msg` (
   `msg` varchar(255) DEFAULT NULL,
   `data` datetime DEFAULT current_timestamp(),
   `ip` char(20) DEFAULT NULL
-)
+);
 
 
 INSERT INTO `msg` (`id`, `nome`, `msg`, `data`, `ip`) VALUES
