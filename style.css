@@ -16,8 +16,8 @@ body{
 }
 
 form{
-   
-    border:1px solid black;
+   display: flex;
+   gap:10px;
 }
 
 form div{

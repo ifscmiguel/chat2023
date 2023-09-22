@@ -31,6 +31,14 @@ if (!trim($nome)) {
             text-align: left;
         }
 
+        #chat div {
+            margin: 5px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #666;
+            background-color: #CCC;
+        }
+
         #input_area {
             display: flex;
             gap: 10px;
@@ -54,8 +62,6 @@ if (!trim($nome)) {
         </form>
     </div>
     <script>
-        
-
         // elementos
         let chatDiv = document.getElementById("chat");
         const nome = document.getElementById("nome");
@@ -89,22 +95,31 @@ if (!trim($nome)) {
             });
         }
         // receber de forma assíncrona
-        function receber() {
-            fetch("ler.php")
+
+        let id = 0;
+        function ler() {
+            let data = new FormData();
+            data.append("id", id);
+            fetch("ler.php", {
+                    method: "POST",
+                    body: data
+                })
                 .then(function(resposta) {
                     return resposta.json();
                 })
-                .then(function(resposta){
-                    resposta.forEach(function(r){
-                        chatDiv.innerHTML += `Nome: ${r.nome}:`;
-                        chatDiv.innerHTML += `Msg: ${r.msg}:`;
-                        chatDiv.innerHTML += '<hr>';
+                .then(function(resposta) {
+                    resposta.forEach(function(r) {
+                        let div = document.createElement('div');
+                        div.innerHTML = `<strong>${r.nome}</strong>: ${r.msg}`;
+                        chatDiv.appendChild(div);
+                        id = r.id;
                         rolar();
                     });
                 });
         }
-        // chama a função receber() a cada 3 segundos
-        setInterval(receber, 10000);
+        // chama a função ler() a cada 3 segundos
+        setInterval(ler, 3000);
+        ler();
     </script>
 </body>
 
