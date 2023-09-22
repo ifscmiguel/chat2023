@@ -37,6 +37,7 @@ if (!trim($nome)) {
             border-radius: 10px;
             border: 1px solid #666;
             background-color: #CCC;
+            word-break: break-all;
         }
 
         #input_area {
@@ -46,6 +47,12 @@ if (!trim($nome)) {
 
         input[type=submit] {
             min-width: auto;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            border:none;
         }
     </style>
 </head>
@@ -97,6 +104,7 @@ if (!trim($nome)) {
         // receber de forma assíncrona
 
         let id = 0;
+
         function ler() {
             let data = new FormData();
             data.append("id", id);

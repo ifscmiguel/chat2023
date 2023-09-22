@@ -15,7 +15,7 @@ $msg = filter_input(INPUT_POST, "msg", FILTER_SANITIZE_SPECIAL_CHARS);
 
 # verifica e salva no banco
 if($nome && $msg){
-    $conexao->query("INSERT INTO msg(nome, msg) VALUES ('$nome', '$msg')");
+    $conexao->query("INSERT INTO msg(nome, msg, ip) VALUES ('$nome', '$msg', '".$_SERVER['REMOTE_ADDR']."')");
 }
 else{
     echo 'dados nao enviados '.count($_POST).count($_GET);
