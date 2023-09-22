@@ -1,10 +1,14 @@
 create database if not exists chat2023;
 use chat2023;
 
-create table if not exists msg(
-    id int not null auto_increment primary key,
-    nome varchar(50) not null,
-    msg varchar(255)
-);
+CREATE TABLE `msg` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `msg` varchar(255) DEFAULT NULL,
+  `data` datetime DEFAULT current_timestamp(),
+  `ip` char(20) DEFAULT NULL
+)
 
-insert into msg(nome, msg) values ("Miguel", "Olá mundo"),("Miguel", "hello world"), ("Antonio", "Quer teclar?")
+
+INSERT INTO `msg` (`id`, `nome`, `msg`, `data`, `ip`) VALUES
+(1, 'Miguel', 'bom dia Garopaba', '2023-09-22 17:08:19', '127.0.0.1');
