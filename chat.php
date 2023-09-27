@@ -12,9 +12,6 @@ if (!trim($nome)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Técnico em Informática IFSC Garopaba</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-       
-    </style>
 </head>
 
 <body>

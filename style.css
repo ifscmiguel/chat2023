@@ -86,7 +86,7 @@ li{
     overflow-y: scroll;
     text-align: left;
 }
-
+/* cada mensagem */
 #chat div {
     margin: 5px;
     padding: 20px;
