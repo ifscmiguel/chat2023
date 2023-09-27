@@ -36,8 +36,9 @@ if (!trim($nome)) {
             padding: 20px;
             border-radius: 10px;
             border: 1px solid #666;
-            background-color: #CCC;
+            background-color: #EEE;
             word-break: break-all;
+            opacity: 0;
         }
 
         #input_area {
@@ -55,13 +56,9 @@ if (!trim($nome)) {
             border: none;
         }
 
-        .ver {
+        .visto {
             opacity: 1 !important;
-            transition: opacity 1s linear;
-        }
-
-        .oculto {
-            opacity: 0;
+            transition: opacity 0.5s linear;
         }
     </style>
 </head>
@@ -130,33 +127,24 @@ if (!trim($nome)) {
                         div.innerHTML = `<strong>${r.nome}</strong>: ${r.msg}`;
                         chatDiv.appendChild(div);
                         id = r.id;
-
-                        rolar();
-                        div.classList.add('oculto');
                     });
                 })
                 .then(function() {
                     let index = 1;
-                    let ocultos = document.querySelectorAll(".oculto");
-                    console.log(ocultos.length);
-                    for (const m of ocultos.values()) {
+                    let naoVistos = document.querySelectorAll(":not(.visto)");
+                    for (const m of naoVistos.values()) {
                         setTimeout(() => {
-                            m.classList.remove("oculto");
-                            m.classList.add('ver');
-                            console.log(m);
-                        }, (index * 300));
+                            m.classList.add('visto');
+                            rolar();
+                        }, (index * 50));
                         index++;
                     }
-
-                    rolar();
-                })
-                .then(function() {
-                    rolar();
                 });
 
         }
+
         // chama a função ler() a cada 3 segundos
-        setInterval(ler, 3000);
+        setInterval(ler, 2000);
         ler();
     </script>
 </body>
